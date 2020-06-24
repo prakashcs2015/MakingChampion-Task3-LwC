@@ -1,0 +1,63 @@
+<template>
+    <lightning-card>
+        <lightning-layout>
+            <div class="slds-m-top_small slds-m-bottom_medium slds-align_absolute_right">
+                <lightning-button variant="brand" label="Insert Records" onclick={addRecords}
+                    class="slds-m-left_x-small"></lightning-button>
+                    
+            </div>
+            <br />
+        </lightning-layout>
+        <h3 slot="title">
+            <lightning-icon icon-name="standard:timesheet" alternative-text="Event" size="small"></lightning-icon>
+            &nbsp;Bulk Contact Creation
+        </h3>
+        <template for:each={itemList} for:item="item" for:index="index">
+            <lightning-record-edit-form key={item.id} object-api-name="Contact">
+                <lightning-input-field field-name="AccountId" value={recordId} variant="label-hidden" class="slds-hide">
+                </lightning-input-field>
+                <lightning-messages> </lightning-messages>
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_2-of-12">
+                        <lightning-input-field field-name="FirstName" access-key={item.id} variant="label-stacked" required>
+                        </lightning-input-field>
+                    </div>
+                    <div class="slds-col slds-size_2-of-12">
+                        <lightning-input-field field-name="LastName" access-key={item.id} variant="label-stacked" required>
+                        </lightning-input-field>
+                    </div>
+                    <div class="slds-col slds-size_3-of-12">
+                        <lightning-input-field field-name="Phone" access-key={item.id} variant="label-stacked" required>
+                        </lightning-input-field>
+                    </div>
+                    <div class="slds-col slds-size_2-of-12">
+                        <lightning-input-field field-name="Email" access-key={item.id} variant="label-stacked" required>
+                        </lightning-input-field>
+                    </div>
+                    <!--div class="slds-col slds-size_1-of-12">
+                        <h2  class="slds-text-heading_small">Select</h2>
+                        <lightning-input type="checkbox" access-key={item.id} id={index} onchange={selectHandle}>
+                        </lightning-input>
+                    </div-->
+                    <div class="slds-col slds-size_1-of-12">
+                        <br />
+                        <a onclick={removeRow}>
+                            <lightning-icon icon-name="utility:delete" size="small" access-key={item.id} id={index}>
+                            </lightning-icon>
+                            <span class="slds-assistive-text">Delete</span>
+                        </a>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-12">
+                        <br />
+                        <a onclick={addRow}>
+                            <lightning-icon icon-name="utility:add" access-key={item.id} id={index} size="small">
+                            </lightning-icon>
+                            <span class="slds-assistive-text">Add</span>
+                        </a>
+                    </div>
+                </div>
+            </lightning-record-edit-form>
+        </template>
+</lightning-card>
+</template>
